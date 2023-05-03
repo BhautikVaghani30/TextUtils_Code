@@ -38,7 +38,6 @@ export default function Textform(props) {
   };
 
   const heandlecopyClick = () => {
-    
     navigator.clipboard.writeText(Text);
     props.showAlert("Copied to clipboard!", "success");
   };
@@ -49,6 +48,16 @@ export default function Textform(props) {
     props.showAlert(" Extra Spaces Removed!", "success");
   };
 
+  const capitalize = () => {
+    const arr = Text.split(" ");
+    for (var i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+    const str2 = arr.join(" ");
+    setText(str2);
+    props.showAlert(" Convert All First Letter UpperCase!", "success");
+  };
+
   const [Text, setText] = useState("");
 
   return (
@@ -57,7 +66,7 @@ export default function Textform(props) {
         className="container"
         style={{ color: props.mode === "dark" ? "white" : "#042743" }}
       >
-        <h2 className="mb-2">{props.heading} </h2>
+        <h2 className="mb-2 rounded">{props.heading} </h2>
         <div className="mb-3">
           <textarea
             style={{
@@ -74,7 +83,6 @@ export default function Textform(props) {
         </div>
 
         <div className=" container input-group   my-3">
-
           <input
             style={{
               backgroundColor: props.mode === "dark" ? "black" : "white",
@@ -96,94 +104,99 @@ export default function Textform(props) {
             className="h-25 form-control w-25 p-3"
             id="in2"
           />
-
         </div>
-        <div className=" container input-group   my-3">
+        </div>
+        <div className=" container input-group ">
         <button
-          disabled={Text.length===0}
-          className=" w-30 btn btn-primary mx-3 my-2"
-          onClick={heandleUpClick}
+            disabled={Text.length === 0}
+            className=" btn btn-primary mx-3 my-2 rounded"
+            onClick={capitalize}
+          >
+            1<sup>th </sup>World Upper
+          </button>
 
-        >
+          <button
+            disabled={Text.length === 0}
+            className="  btn btn-primary mx-1 my-2 rounded"
+            onClick={heandleUpClick}
+          >
+            To UpperCase
+          </button>
 
-          To UpperCase
+          <button
+            disabled={Text.length === 0}
+            className="  btn btn-primary mx-3 my-2 rounded"
+            onClick={heandleLoClick}
+          >
+            To LowerCase
+          </button>
 
-        </button>
+          <button
+            disabled={Text.length === 0}
+            className="  btn btn-primary mx-3 my-2 rounded"
+            onClick={heandleReClick}
+          >
+            Replace World
+          </button>
 
-        <button
-        disabled={Text.length===0}
-          className=" w-30 btn btn-primary mx-3 my-2"
-          onClick={heandleLoClick}
-        >
-          To LowerCase
-        </button>
+          <button
+            disabled={Text.length === 0}
+            className=" btn btn-primary mx-3 my-2 rounded"
+            onClick={heandleremovClick}
+          >
+            Remove Spaces
+          </button>
 
-        <button
-        disabled={Text.length===0}
-          className=" w-30 btn btn-primary mx-3 my-2"
-          onClick={heandleReClick}
-        >
-          Replace World
-        </button>
+          <button
+            disabled={Text.length === 0}
+            className=" btn btn-primary mx-2 rounded my-2 rounded"
+            onClick={heandlecopyClick}
+          >
+            Copy Textarea
+          </button>
 
-        <button
-        disabled={Text.length===0}
-          className="w-30 btn btn-primary mx-3 my-2"
-          onClick={heandleclearClick}
-        >
-          Clear Textarea
-        </button>
-
-        <button
-        disabled={Text.length===0}
-          className="w-30 btn btn-primary mx-2 my-2"
-          onClick={heandlecopyClick}
-        >
-          Copy Textarea
-        </button>
-
-        <button
-        disabled={Text.length===0}
-          className="w-30 btn btn-primary mx-3 my-2"
-          onClick={heandleremovClick}
-        >
-          Remove Spaces 
-        </button>
-
-      </div>
-      </div>
+          
+          <button
+            disabled={Text.length === 0}
+            className=" btn btn-primary mx-3 my-2 rounded"
+            onClick={heandleclearClick}
+          >
+            Clear Textarea
+          </button>
+        </div>
+      {/* </div> */}
 
       <div
-        className="container my-2"
+        className="container my-2 rounded"
         style={{ color: props.mode === "dark" ? "white" : "#042743" }}
       >
         <h2>Your Text Summary</h2>
 
         <p>
-
-          <b>{Text.split(/\s+/).filter((element)=>{return element.length!==0}).length}</b> and<b> {Text.length}</b> characters
-
+          <b>
+            {
+              Text.split(/\s+/).filter((element) => {
+                return element.length !== 0;
+              }).length
+            }
+          </b>{" "}Word
+          and<b> {Text.length}</b> characters
         </p>
 
         <p>
-
-          <b>{0.008 * Text.split(" ").filter((element)=>{return element.length!== 0}).length}</b> Minutes Read
-
+          <b>
+            {0.008 *
+              Text.split(" ").filter((element) => {
+                return element.length !== 0;
+              }).length}
+          </b>{" "}
+          Minutes Read
         </p>
 
         <h2>Preview</h2>
-            <div className="box container">
-
-        <p>
-
-          {Text.length > 0
-            ? Text
-            : "Nothing To Preview!"
-          }
-
-        </p>
-          </div>
-
+        <div className="box container">
+          <p>{Text.length > 0 ? Text : "Nothing To Preview!"}</p>
+        </div>
       </div>
     </>
   );
