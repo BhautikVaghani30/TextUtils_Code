@@ -89,7 +89,7 @@ export default function Textform(props) {
               color: props.mode === "dark" ? "white" : "#042743",
             }}
             type="text"
-            placeholder="Enter Any World "
+            placeholder="Enter Any Word "
             className="h-25 form-control w-25 p-3"
             id="in1"
           />
@@ -100,7 +100,7 @@ export default function Textform(props) {
               color: props.mode === "dark" ? "white" : "#042743",
             }}
             type="text"
-            placeholder="Enter New World "
+            placeholder="Enter New Word "
             className="h-25 form-control w-25 p-3"
             id="in2"
           />
@@ -112,7 +112,7 @@ export default function Textform(props) {
             className=" btn btn-primary mx-3 my-2 rounded"
             onClick={capitalize}
           >
-            1<sup>th </sup>World Upper
+            1<sup>th </sup>Word Upper
           </button>
 
           <button
@@ -136,7 +136,7 @@ export default function Textform(props) {
             className="  btn btn-primary mx-3 my-2 rounded"
             onClick={heandleReClick}
           >
-            Replace World
+            Replace Word
           </button>
 
           <button
