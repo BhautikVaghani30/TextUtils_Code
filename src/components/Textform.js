@@ -1,5 +1,6 @@
 // import { clear } from "@testing-library/user-event/dist/clear";
 import React, { useState } from "react";
+import { useSpeechSynthesis } from "react-speech-kit";
 // import "./App.css";
 export default function Textform(props) {
   const heandelOnChange = (event) => {
@@ -57,7 +58,33 @@ export default function Textform(props) {
     setText(str2);
     props.showAlert(" Convert All First Letter UpperCase!", "success");
   };
+  // const voice = () => {
+  //   var speech = document.getElementById("myBox"),
+  //    convert = document.getElementById("Convert"),
+  //   //  voiceIco = document.getElementById(""),
+  //    count = 1,
+  //     speechText;
+  //    convert.addEventListener('click',()=>{
+  //     if(speechSynthesis.speaking || speechSynthesis.pause()){
+  //       speechText = speech.value;
+  //       var speechVoice = new SpeechSynthesisUtterance();
+  //       var voices = speechSynthesis.getVoices();
+  //       speechVoice.voice = voices[2];
+  //       speechVoice.text = speechText;
+  //       speechVoice.lang = 'en_US';
+  //       speechSynthesis.speak (speechVoice)
 
+  //     }
+  //   })
+  // }
+
+  // const [text, setText] = useState('');
+  const {speak} = useSpeechSynthesis();
+    const handleOnClick = ()=>{
+    
+      speak({text:Text})
+    }
+  
   const [Text, setText] = useState("");
 
   return (
@@ -74,7 +101,7 @@ export default function Textform(props) {
               color: props.mode === "dark" ? "white" : "#042743",
             }}
             className="form-control"
-            onChange={heandelOnChange}
+            onChange={(e)=>{setText(e.target.value)}}
             placeholder="Enter Text Here ?"
             value={Text}
             id="myBox"
@@ -105,65 +132,74 @@ export default function Textform(props) {
             id="in2"
           />
         </div>
-        </div>
-        <div className=" container input-group ">
+      </div>
+      <div className=" container input-group ">
+     
         <button
-            disabled={Text.length === 0}
-            className=" btn btn-primary mx-3 my-2 rounded"
-            onClick={capitalize}
-          >
-            1<sup>th </sup>Word Upper
-          </button>
+          disabled={Text.length === 0}
+          className=" btn btn-primary mx-3 my-2 rounded"
+          onClick={capitalize}
+        >
+          1<sup>th </sup>Word Upper
+        </button>
 
-          <button
-            disabled={Text.length === 0}
-            className="  btn btn-primary mx-1 my-2 rounded"
-            onClick={heandleUpClick}
-          >
-            To UpperCase
-          </button>
+        <button
+          disabled={Text.length === 0}
+          className="  btn btn-primary mx-1 my-2 rounded"
+          onClick={heandleUpClick}
+        >
+          To UpperCase
+        </button>
 
-          <button
-            disabled={Text.length === 0}
-            className="  btn btn-primary mx-3 my-2 rounded"
-            onClick={heandleLoClick}
-          >
-            To LowerCase
-          </button>
+        <button
+          disabled={Text.length === 0}
+          className="  btn btn-primary mx-3 my-2 rounded"
+          onClick={heandleLoClick}
+        >
+          To LowerCase
+        </button>
 
-          <button
-            disabled={Text.length === 0}
-            className="  btn btn-primary mx-3 my-2 rounded"
-            onClick={heandleReClick}
-          >
-            Replace Word
-          </button>
+        <button
+          disabled={Text.length === 0}
+          className="  btn btn-primary mx-3 my-2 rounded"
+          onClick={heandleReClick}
+        >
+          Replace Word
+        </button>
 
-          <button
-            disabled={Text.length === 0}
-            className=" btn btn-primary mx-3 my-2 rounded"
-            onClick={heandleremovClick}
-          >
-            Remove Spaces
-          </button>
+        <button
+          disabled={Text.length === 0}
+          className=" btn btn-primary mx-3 my-2 rounded"
+          onClick={heandleremovClick}
+        >
+          Remove Spaces
+        </button>
+        <button
+          disabled={Text.length === 0}
+          className=" btn btn-primary mx-3 my-2 rounded"
+          onClick={handleOnClick}
+          id="Convert"
+        >
+          Read Textarea
+        </button>
+        <button
+          disabled={Text.length === 0}
+          className=" btn btn-primary mx-2 rounded my-2 rounded"
+          onClick={heandlecopyClick}
+        >
+          Copy Textarea
+        </button>
 
-          <button
-            disabled={Text.length === 0}
-            className=" btn btn-primary mx-2 rounded my-2 rounded"
-            onClick={heandlecopyClick}
-          >
-            Copy Textarea
-          </button>
 
-          
-          <button
-            disabled={Text.length === 0}
-            className=" btn btn-primary mx-3 my-2 rounded"
-            onClick={heandleclearClick}
-          >
-            Clear Textarea
-          </button>
-        </div>
+        <button
+          disabled={Text.length === 0}
+          className=" btn btn-primary mx-3 my-2 rounded"
+          onClick={heandleclearClick}
+        >
+          Clear Textarea
+        </button>
+        
+      </div>
       {/* </div> */}
 
       <div
